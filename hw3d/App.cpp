@@ -14,7 +14,7 @@ namespace dx = DirectX;
 App::App( const std::string& commandLine )
 	:
 	commandLine( commandLine ),
-	wnd( 1280,720,"The Donkey Fart Box" ),
+	wnd( 1280,720,"DirectX 11 Fun Time" ),
 	scriptCommander( TokenizeQuoted( commandLine ) ),
 	light( wnd.Gfx() )
 {
@@ -27,17 +27,18 @@ App::App( const std::string& commandLine )
 		dx::XMMatrixRotationY( PI / 2.f ) *
 		dx::XMMatrixTranslation( 27.f,-0.56f,1.7f )
 	);
-	gobber.SetRootTransform(
+	dxbox.SetRootTransform( 
+		dx::XMMatrixRotationX( -PI / 2.f ) *
 		dx::XMMatrixRotationY( -PI / 2.f ) *
-		dx::XMMatrixTranslation( -8.f,10.f,0.f )
+		dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
 	);
 	
 	cube.LinkTechniques( rg );
 	cube2.LinkTechniques( rg );
 	light.LinkTechniques( rg );
 	sponza.LinkTechniques( rg );
-	gobber.LinkTechniques( rg );
 	nano.LinkTechniques( rg );
+	dxbox.LinkTechniques( rg );
 	cameras.LinkTechniques( rg );
 }
 
@@ -117,19 +118,19 @@ void App::DoFrame( float dt )
 	cube.Submit();
 	sponza.Submit();
 	cube2.Submit();
-	gobber.Submit();
 	nano.Submit();
+	dxbox.Submit();
 	cameras.Submit();
 
 	rg.Execute( wnd.Gfx() );
 	
 	// imgui windows
 	static MP sponzeProbe{ "Sponza" };
-	static MP gobberProbe{ "Gobber" };
 	static MP nanoProbe{ "Nano" };
+	static MP dxboxProbe{ "DxBox" };
 	sponzeProbe.SpawnWindow( sponza );
-	gobberProbe.SpawnWindow( gobber );
 	nanoProbe.SpawnWindow( nano );
+	dxboxProbe.SpawnWindow( dxbox );
 	cameras.SpawnWindow( wnd.Gfx() );
 	light.SpawnControlWindow();
 	ShowImguiDemoWindow();
