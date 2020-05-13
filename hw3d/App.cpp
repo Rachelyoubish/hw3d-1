@@ -24,15 +24,17 @@ App::App( const std::string& commandLine )
 
 	//cube.SetPos( { 4.0f,0.0f,0.0f } );
 	//cube2.SetPos( { 0.0f,4.0f,0.0f } );
-	nano.SetRootTransform(
-		dx::XMMatrixRotationY( PI / 2.f ) *
-		dx::XMMatrixTranslation( 27.f,-0.56f,1.7f )
-	);
-	diablo.SetRootTransform(
-		dx::XMMatrixRotationX( PI / 2.f ) *
-		dx::XMMatrixRotationY( PI / 2.f ) *
-		dx::XMMatrixTranslation( 15.f, 1.f, 0.f )
-	);
+	//nano.SetRootTransform(
+	//	dx::XMMatrixRotationY( PI / 2.f ) *
+	//	dx::XMMatrixTranslation( 27.f,-0.56f,1.7f )
+	//);
+
+	// Root transformations don't need to be set here, when already updating in actual DoFrame().
+	//diablo.SetRootTransform(
+	//	dx::XMMatrixRotationX( PI / 2.f ) *
+	//	dx::XMMatrixRotationY( PI / 2.f ) *
+	//	dx::XMMatrixTranslation( 15.f, 1.f, 0.f )
+	//);
 	//dxbox.SetRootTransform( 
 	//	dx::XMMatrixRotationX( -PI / 2.f ) *
 	//	dx::XMMatrixRotationY( -PI / 2.f ) *
@@ -42,9 +44,9 @@ App::App( const std::string& commandLine )
 	// cube.LinkTechniques( rg );
 	// cube2.LinkTechniques( rg );
 	light.LinkTechniques( rg );
-	sponza.LinkTechniques( rg );
-	nano.LinkTechniques( rg );
-	dxbox.LinkTechniques( rg );
+	// sponza.LinkTechniques( rg );
+	// nano.LinkTechniques( rg );
+	// dxbox.LinkTechniques( rg );
 	diablo.LinkTechniques( rg );
 	cameras.LinkTechniques( rg );
 }
@@ -122,17 +124,23 @@ void App::DoFrame( float dt )
 	light.Bind( wnd.Gfx(),cameras->GetMatrix() );
 
 	temp += dt;
-	dxbox.UpdateRootTransform( 
-		dx::XMMatrixRotationX(-PI / 2.f) *
-		dx::XMMatrixRotationY( (2.f * temp) / 3.f) *
-		dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) );
+	//dxbox.UpdateRootTransform( 
+	//	dx::XMMatrixRotationX(-PI / 2.f) *
+	//	dx::XMMatrixRotationY( (2.f * temp) / 3.f) *
+	//	dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
+	//);
+	diablo.UpdateRootTransform(
+		dx::XMMatrixRotationX( PI / 2.f ) *
+		dx::XMMatrixRotationY( (2.f * temp) / 3.f ) *
+		dx::XMMatrixTranslation( 15.f, 1.f, 0.f )
+	);
 		
 	light.Submit();
 	// cube.Submit();
-	sponza.Submit();
+	// sponza.Submit();
 	// cube2.Submit();
-	nano.Submit();
-	dxbox.Submit();
+	// nano.Submit();
+	// dxbox.Submit();
 	diablo.Submit();
 	cameras.Submit();
 
@@ -142,9 +150,11 @@ void App::DoFrame( float dt )
 	static MP sponzeProbe{ "Sponza" };
 	static MP nanoProbe{ "Nano" };
 	static MP dxboxProbe{ "DxBox" };
-	sponzeProbe.SpawnWindow( sponza );
-	nanoProbe.SpawnWindow( nano );
-	dxboxProbe.SpawnWindow( dxbox );
+	static MP diabloProbe{ "Diablo" };
+	// sponzeProbe.SpawnWindow( sponza );
+	// nanoProbe.SpawnWindow( nano );
+	// dxboxProbe.SpawnWindow( dxbox );
+	diabloProbe.SpawnWindow( diablo );
 	cameras.SpawnWindow( wnd.Gfx() );
 	light.SpawnControlWindow();
 	ShowImguiDemoWindow();

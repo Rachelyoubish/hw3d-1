@@ -10,7 +10,8 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 3
-map_Kd Textures\\Diablo_diff.png
+map_Kd Diablo_diff.png
+map_Ks Diablo_diff.png
 
 newmtl Glass
 Ns 179.999996
@@ -21,4 +22,5 @@ Ke 0.0 0.0 0.0
 Ni 1.450000
 d 1.000000
 illum 3
-map_Kd Textures\\Diablo_diff.png
+map_Kd Diablo_diff.png
+map_Ks Diablo_diff.png
