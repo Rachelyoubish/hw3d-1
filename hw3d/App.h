@@ -38,4 +38,5 @@ private:
 	Model gobber{ wnd.Gfx(),"Models\\gobber\\GoblinX.obj",4.0f };
 	Model nano{ wnd.Gfx(),"Models\\nano_textured\\nanosuit.obj",2.0f };
 	Model dxbox{ wnd.Gfx(),"Models\\dx_box\\DXBoxCube.obj", 4.0f };
+	Model diablo{ wnd.Gfx(),"Models\\diablo\\diablo.obj", 1.0f / 22.0f};
 };

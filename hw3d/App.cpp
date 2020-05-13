@@ -22,11 +22,16 @@ App::App( const std::string& commandLine )
 	cameras.AddCamera( std::make_unique<Camera>( wnd.Gfx(),"A",dx::XMFLOAT3{ -13.5f,6.0f,3.5f },0.0f,PI / 2.0f ) );
 	cameras.AddCamera( std::make_unique<Camera>( wnd.Gfx(),"B",dx::XMFLOAT3{ -13.5f,28.8f,-6.4f },PI / 180.0f * 13.0f,PI / 180.0f * 61.0f ) );
 
-	cube.SetPos( { 4.0f,0.0f,0.0f } );
-	cube2.SetPos( { 0.0f,4.0f,0.0f } );
+	//cube.SetPos( { 4.0f,0.0f,0.0f } );
+	//cube2.SetPos( { 0.0f,4.0f,0.0f } );
 	nano.SetRootTransform(
 		dx::XMMatrixRotationY( PI / 2.f ) *
 		dx::XMMatrixTranslation( 27.f,-0.56f,1.7f )
+	);
+	diablo.SetRootTransform(
+		dx::XMMatrixRotationX( PI / 2.f ) *
+		dx::XMMatrixRotationY( PI / 2.f ) *
+		dx::XMMatrixTranslation( 15.f, 1.f, 0.f )
 	);
 	//dxbox.SetRootTransform( 
 	//	dx::XMMatrixRotationX( -PI / 2.f ) *
@@ -34,12 +39,13 @@ App::App( const std::string& commandLine )
 	//	dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
 	//);
 	
-	cube.LinkTechniques( rg );
-	cube2.LinkTechniques( rg );
+	// cube.LinkTechniques( rg );
+	// cube2.LinkTechniques( rg );
 	light.LinkTechniques( rg );
 	sponza.LinkTechniques( rg );
 	nano.LinkTechniques( rg );
 	dxbox.LinkTechniques( rg );
+	diablo.LinkTechniques( rg );
 	cameras.LinkTechniques( rg );
 }
 
@@ -122,11 +128,12 @@ void App::DoFrame( float dt )
 		dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) );
 		
 	light.Submit();
-	cube.Submit();
+	// cube.Submit();
 	sponza.Submit();
-	cube2.Submit();
+	// cube2.Submit();
 	nano.Submit();
 	dxbox.Submit();
+	diablo.Submit();
 	cameras.Submit();
 
 	rg.Execute( wnd.Gfx() );
@@ -141,8 +148,8 @@ void App::DoFrame( float dt )
 	cameras.SpawnWindow( wnd.Gfx() );
 	light.SpawnControlWindow();
 	ShowImguiDemoWindow();
-	cube.SpawnControlWindow( wnd.Gfx(),"Cube 1" );
-	cube2.SpawnControlWindow( wnd.Gfx(),"Cube 2" );
+	// cube.SpawnControlWindow( wnd.Gfx(),"Cube 1" );
+	// cube2.SpawnControlWindow( wnd.Gfx(),"Cube 2" );
 	
 	rg.RenderWidgets( wnd.Gfx() );
 
@@ -176,10 +183,5 @@ int App::Go()
 		const auto dt = timer.Mark() * speed_factor;
 		HandleInput( dt );
 		DoFrame( dt );
-		//dxbox.UpdateRootTransform(
-			//dx::XMMatrixRotationX( -PI / 2.f ) *
-			//dx::XMMatrixRotationY( yrot )// *
-			//dx::XMMatrixTranslation( 0.f, 10.f, 0.f )
-		//);
 	}
 }
