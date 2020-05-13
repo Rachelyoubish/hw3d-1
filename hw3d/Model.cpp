@@ -54,6 +54,11 @@ void Model::SetRootTransform( DirectX::FXMMATRIX tf ) noexcept
 	pRoot->SetAppliedTransform( tf );
 }
 
+void Model::UpdateRootTransform( DirectX::FXMMATRIX tf ) noexcept
+{
+	pRoot->SetAppliedTransform( tf );
+}
+
 void Model::Accept( ModelProbe & probe )
 {
 	pRoot->Accept( probe );

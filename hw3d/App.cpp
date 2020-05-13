@@ -10,6 +10,7 @@
 #include "Camera.h"
 
 namespace dx = DirectX;
+static float temp{};
 
 App::App( const std::string& commandLine )
 	:
@@ -27,11 +28,11 @@ App::App( const std::string& commandLine )
 		dx::XMMatrixRotationY( PI / 2.f ) *
 		dx::XMMatrixTranslation( 27.f,-0.56f,1.7f )
 	);
-	dxbox.SetRootTransform( 
-		dx::XMMatrixRotationX( -PI / 2.f ) *
-		dx::XMMatrixRotationY( -PI / 2.f ) *
-		dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
-	);
+	//dxbox.SetRootTransform( 
+	//	dx::XMMatrixRotationX( -PI / 2.f ) *
+	//	dx::XMMatrixRotationY( -PI / 2.f ) *
+	//	dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
+	//);
 	
 	cube.LinkTechniques( rg );
 	cube2.LinkTechniques( rg );
@@ -113,6 +114,12 @@ void App::DoFrame( float dt )
 	wnd.Gfx().BeginFrame( 0.07f,0.0f,0.12f );
 	cameras->BindToGraphics( wnd.Gfx() );
 	light.Bind( wnd.Gfx(),cameras->GetMatrix() );
+
+	temp += dt;
+	dxbox.UpdateRootTransform( 
+		dx::XMMatrixRotationX(-PI / 2.f) *
+		dx::XMMatrixRotationY( (2.f * temp) / 3.f) *
+		dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) );
 		
 	light.Submit();
 	cube.Submit();
@@ -123,7 +130,7 @@ void App::DoFrame( float dt )
 	cameras.Submit();
 
 	rg.Execute( wnd.Gfx() );
-	
+
 	// imgui windows
 	static MP sponzeProbe{ "Sponza" };
 	static MP nanoProbe{ "Nano" };
@@ -169,5 +176,10 @@ int App::Go()
 		const auto dt = timer.Mark() * speed_factor;
 		HandleInput( dt );
 		DoFrame( dt );
+		//dxbox.UpdateRootTransform(
+			//dx::XMMatrixRotationX( -PI / 2.f ) *
+			//dx::XMMatrixRotationY( yrot )// *
+			//dx::XMMatrixTranslation( 0.f, 10.f, 0.f )
+		//);
 	}
 }
