@@ -40,6 +40,11 @@ App::App( const std::string& commandLine )
 	//	dx::XMMatrixRotationY( -PI / 2.f ) *
 	//	dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
 	//);
+
+
+	garage_base.UpdateRootTransform(
+		dx::XMMatrixTranslation( 27.f, -0.7f, 0.f )
+	);
 	
 	// cube.LinkTechniques( rg );
 	// cube2.LinkTechniques( rg );
@@ -48,6 +53,7 @@ App::App( const std::string& commandLine )
 	// nano.LinkTechniques( rg );
 	// dxbox.LinkTechniques( rg );
 	diablo.LinkTechniques( rg );
+	garage_base.LinkTechniques( rg );
 	cameras.LinkTechniques( rg );
 }
 
@@ -142,6 +148,7 @@ void App::DoFrame( float dt )
 	// nano.Submit();
 	// dxbox.Submit();
 	diablo.Submit();
+	garage_base.Submit();
 	cameras.Submit();
 
 	rg.Execute( wnd.Gfx() );

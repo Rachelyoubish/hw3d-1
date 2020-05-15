@@ -37,7 +37,8 @@ private:
 	// Model sponza{ wnd.Gfx(),"Models\\sponza\\sponza.obj",1.0f / 20.0f };
 	// Model gobber{ wnd.Gfx(),"Models\\gobber\\GoblinX.obj",4.0f };
 	// Model nano{ wnd.Gfx(),"Models\\nano_textured\\nanosuit.obj",2.0f };
-	Model dxbox{ wnd.Gfx(),"Models\\dx_box\\DXBoxCube.obj", 4.0f };
+	// Model dxbox{ wnd.Gfx(),"Models\\dx_box\\DXBoxCube.obj", 4.0f };
 	Model diablo{ wnd.Gfx(),"Models\\diablo\\diablo.obj", 1.0f / 22.0f};
+	Model garage_base{ wnd.Gfx(),"Models\\garage_base\\GarageBase.obj", 20.0f};
 	// Model jo_G{ wnd.Gfx(),"Models\\jo_grenades\\Grenades and a little extra.obj", 1.0f / 4.0f};
 };
