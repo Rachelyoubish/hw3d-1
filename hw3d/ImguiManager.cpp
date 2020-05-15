@@ -13,6 +13,11 @@ ImguiManager::ImguiManager()
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGui::StyleColorsDark();
+	
+	ImGuiIO &io = ImGui::GetIO();
+	io.Fonts->AddFontFromFileTTF( "fonts/Roboto-Regular.ttf", 15.0f, nullptr );
+	ImGui::GetStyle().FrameRounding = 4.0f;
+	ImGui::GetStyle().GrabRounding = 4.0f;
 
 	ImVec4 *colors = ImGui::GetStyle().Colors;
 	colors[ImGuiCol_Text] = ImVec4( 1.00f, 1.00f, 1.00f, 1.00f );
