@@ -19,7 +19,7 @@ namespace Bind
 		descDepth.MipLevels = 1u;
 		descDepth.ArraySize = 1u;
 		descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT; // this will need to be fixed
-		descDepth.SampleDesc.Count = 1u;
+		descDepth.SampleDesc.Count = 2u;
 		descDepth.SampleDesc.Quality = 0u;
 		descDepth.Usage = D3D11_USAGE_DEFAULT;
 		descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL | (canBindShaderInput ? D3D11_BIND_SHADER_RESOURCE : 0);
