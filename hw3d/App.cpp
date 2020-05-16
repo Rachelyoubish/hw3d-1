@@ -29,7 +29,7 @@ App::App( const std::string& commandLine )
 
 
 	garage_base.UpdateRootTransform(
-		dx::XMMatrixTranslation( 27.f, -0.7f, 0.f )
+		dx::XMMatrixTranslation( 20.f, -0.7f, 0.f )
 	);
 	
 	light.LinkTechniques( rg );
@@ -127,7 +127,7 @@ void App::DoFrame( float dt )
 		diablo.UpdateRootTransform(
 			dx::XMMatrixRotationX( PI / 2.f ) *
 			dx::XMMatrixRotationY( (2.f * temp) / 3.f ) *
-			dx::XMMatrixTranslation( 27.f, 1.f, 0.f )
+			dx::XMMatrixTranslation( 20.f, 1.f, 0.f )
 		);
 	}
 		
