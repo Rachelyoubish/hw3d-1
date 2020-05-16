@@ -113,17 +113,23 @@ void App::DoFrame( float dt )
 	cameras->BindToGraphics( wnd.Gfx() );
 	light.Bind( wnd.Gfx(),cameras->GetMatrix() );
 
-	temp += dt;
+	ImGui::Begin("Is Rotating");
+	ImGui::Checkbox( "Rotation", &rotationEnabled );
+	ImGui::End();
 	//dxbox.UpdateRootTransform( 
 	//	dx::XMMatrixRotationX(-PI / 2.f) *
 	//	dx::XMMatrixRotationY( (2.f * temp) / 3.f) *
 	//	dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
 	//);
-	diablo.UpdateRootTransform(
-		dx::XMMatrixRotationX( PI / 2.f ) *
-		dx::XMMatrixRotationY( (2.f * temp) / 3.f ) *
-		dx::XMMatrixTranslation( 27.f, 1.f, 0.f )
-	);
+	if (rotationEnabled)
+	{
+		temp += dt;
+		diablo.UpdateRootTransform(
+			dx::XMMatrixRotationX( PI / 2.f ) *
+			dx::XMMatrixRotationY( (2.f * temp) / 3.f ) *
+			dx::XMMatrixTranslation( 27.f, 1.f, 0.f )
+		);
+	}
 		
 	light.Submit();
 	// sponza.Submit();
