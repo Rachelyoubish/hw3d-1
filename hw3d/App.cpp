@@ -22,23 +22,9 @@ App::App( const std::string& commandLine )
 	cameras.AddCamera( std::make_unique<Camera>( wnd.Gfx(),"A",dx::XMFLOAT3{ -13.5f,6.0f,3.5f },0.0f,PI / 2.0f ) );
 	// cameras.AddCamera( std::make_unique<Camera>( wnd.Gfx(),"B",dx::XMFLOAT3{ -13.5f,28.8f,-6.4f },PI / 180.0f * 13.0f,PI / 180.0f * 61.0f ) );
 
-	//cube.SetPos( { 4.0f,0.0f,0.0f } );
-	//cube2.SetPos( { 0.0f,4.0f,0.0f } );
 	//nano.SetRootTransform(
 	//	dx::XMMatrixRotationY( PI / 2.f ) *
 	//	dx::XMMatrixTranslation( 27.f,-0.56f,1.7f )
-	//);
-
-	// Root transformations don't need to be set here, when already updating in actual DoFrame().
-	//diablo.SetRootTransform(
-	//	dx::XMMatrixRotationX( PI / 2.f ) *
-	//	dx::XMMatrixRotationY( PI / 2.f ) *
-	//	dx::XMMatrixTranslation( 15.f, 1.f, 0.f )
-	//);
-	//dxbox.SetRootTransform( 
-	//	dx::XMMatrixRotationX( -PI / 2.f ) *
-	//	dx::XMMatrixRotationY( -PI / 2.f ) *
-	//	dx::XMMatrixTranslation( 0.f, 10.f, 0.f ) 
 	//);
 
 
@@ -46,8 +32,6 @@ App::App( const std::string& commandLine )
 		dx::XMMatrixTranslation( 27.f, -0.7f, 0.f )
 	);
 	
-	// cube.LinkTechniques( rg );
-	// cube2.LinkTechniques( rg );
 	light.LinkTechniques( rg );
 	// sponza.LinkTechniques( rg );
 	// nano.LinkTechniques( rg );
@@ -142,9 +126,7 @@ void App::DoFrame( float dt )
 	);
 		
 	light.Submit();
-	// cube.Submit();
 	// sponza.Submit();
-	// cube2.Submit();
 	// nano.Submit();
 	// dxbox.Submit();
 	diablo.Submit();
@@ -165,8 +147,6 @@ void App::DoFrame( float dt )
 	cameras.SpawnWindow( wnd.Gfx() );
 	light.SpawnControlWindow();
 	ShowImguiDemoWindow();
-	// cube.SpawnControlWindow( wnd.Gfx(),"Cube 1" );
-	// cube2.SpawnControlWindow( wnd.Gfx(),"Cube 2" );
 	
 	rg.RenderWidgets( wnd.Gfx() );
 
